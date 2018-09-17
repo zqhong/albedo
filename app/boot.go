@@ -2,26 +2,20 @@ package app
 
 import (
 	"errors"
-	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
-	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"github.com/zqhong/albedo/model"
-	"github.com/zqhong/albedo/router"
-	"github.com/zqhong/albedo/router/middleware"
 	"net/http"
 	"time"
 )
 
-var (
-	cfg = pflag.StringP("config", "c", "", "config file path.")
-)
-
 func Run() {
-	initConfig()
-	initLog()
-	initDb()
-	initGin()
+	InitConfig()
+
+	InitLogger()
+
+	InitDb()
+
+	InitGin()
 
 	// Ping the server to make sure the router is working.
 	go func() {
@@ -30,52 +24,6 @@ func Run() {
 		}
 		log.Debug("The router has been deployed successfully")
 	}()
-}
-
-func initConfig() {
-	pflag.Parse()
-	if err := InitConfig(*cfg); err != nil {
-		panic(err)
-	}
-}
-
-func initLog() {
-	passLagerCfg := log.PassLagerCfg{
-		Writers:        viper.GetString("log.writers"),
-		LoggerLevel:    viper.GetString("log.logger_level"),
-		LoggerFile:     viper.GetString("log.logger_file"),
-		LogFormatText:  viper.GetBool("log.log_format_text"),
-		RollingPolicy:  viper.GetString("log.rollingPolicy"),
-		LogRotateDate:  viper.GetInt("log.log_rotate_date"),
-		LogRotateSize:  viper.GetInt("log.log_rotate_size"),
-		LogBackupCount: viper.GetInt("log.log_backup_count"),
-	}
-
-	log.InitWithConfig(&passLagerCfg)
-}
-
-func initGin() {
-	// Set gin mode.
-	gin.SetMode(viper.GetString("runmode"))
-
-	// Create the Gin engine.
-	g := gin.New()
-
-	// Routes.
-	router.Load(
-		// Cores.
-		g,
-		// Middlwares.
-		middleware.RequestId(),
-	)
-
-	log.Debugf("Start to listening the incoming requests on http address: %s", viper.GetString("addr"))
-	log.Info(http.ListenAndServe(viper.GetString("addr"), g).Error())
-}
-
-func initDb() {
-	model.DB.Init()
-	defer model.DB.Close()
 }
 
 // pingServer pings the http server to make sure the router is working.

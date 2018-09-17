@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/lexkong/log"
+	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"strings"
 )
@@ -11,12 +12,15 @@ type Config struct {
 	Name string
 }
 
-func InitConfig(cfg string) error {
+func InitConfig() error {
+	cfg := pflag.StringP("config", "c", "", "config file path.")
+	pflag.Parse()
+
 	c := Config{
-		Name: cfg,
+		Name: *cfg,
 	}
 
-	if err := c.initConfig(); err != nil {
+	if err := c.initViper(); err != nil {
 		return err
 	}
 
@@ -25,7 +29,7 @@ func InitConfig(cfg string) error {
 	return nil
 }
 
-func (c *Config) initConfig() error {
+func (c *Config) initViper() error {
 	if c.Name != "" {
 		viper.SetConfigFile(c.Name)
 	} else {

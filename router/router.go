@@ -2,8 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/zqhong/albedo/handler"
 	"github.com/zqhong/albedo/handler/sd"
-	"net/http"
+	"github.com/zqhong/albedo/pkg/errno"
 )
 
 func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
@@ -12,7 +13,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	// 404 handler
 	g.NoRoute(func(c *gin.Context) {
-		c.String(http.StatusNotFound, "找不到该路由")
+		handler.SendResponse(c, errno.NotFound, "")
 	})
 
 	// The health check handlers

@@ -2,11 +2,10 @@ package sd
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
+	"github.com/zqhong/albedo/handler"
 )
 
 // HealthCheck shows `OK` as the ping-pong result.
 func HealthCheck(c *gin.Context) {
-	message := "OK"
-	c.String(http.StatusOK, "\n"+message)
+	handler.SendResponse(c, nil, "OK")
 }

@@ -1,0 +1,8 @@
+/.idea
+/log/*
+!/log/.gitkeep
+/build/*
+!/build/.gitkeep
+/vendor/*
+!/vendor/vendor.json
+/conf/config.yaml

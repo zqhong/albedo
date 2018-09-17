@@ -6,6 +6,3 @@
 
 ## 参考
 主要思路来源于 [lexkong/apiserver](https://github.com/lexkong/apiserver)。另外参考了 [chenhg5/morningo](https://github.com/chenhg5/morningo) 和 [inhere/go-gin-skeleton](https://github.com/inhere/go-gin-skeleton)。
-
-## 名字由来
-名字取自 OVERLORD 登场角色雅儿贝德（Albedo）。

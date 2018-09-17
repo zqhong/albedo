@@ -3,7 +3,13 @@ package app
 import (
 	"github.com/lexkong/log"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
+	"gopkg.in/natefinch/lumberjack.v2"
 )
+
+// logger instance
+var Logger *zap.Logger
 
 func InitLogger() {
 	passLagerCfg := log.PassLagerCfg{
@@ -18,4 +24,18 @@ func InitLogger() {
 	}
 
 	log.InitWithConfig(&passLagerCfg)
+
+	w := zapcore.AddSync(&lumberjack.Logger{
+		Filename:   "/var/log/myapp/foo.log",
+		MaxSize:    500, // megabytes
+		MaxBackups: 3,
+		MaxAge:     28, // days
+	})
+	core := zapcore.NewCore(
+		zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig()),
+		w,
+		zap.InfoLevel,
+	)
+	Logger := zap.New(core)
+	defer Logger.Sync()
 }

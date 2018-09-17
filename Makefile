@@ -9,7 +9,7 @@ BINARY_NAME=albedo
 all: build
 
 build: gotool
-	$(GOBUILD) -o ./build/$(BINARY_NAME) -tags=jsoniter -v ./
+	$(GOBUILD) -ldflags="-s -w" -o ./build/$(BINARY_NAME) -tags=jsoniter -v ./
 
 run: build
 	./build/$(BINARY_NAME)

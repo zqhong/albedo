@@ -11,8 +11,7 @@ all: build
 build: gotool
 	$(GOBUILD) -o ./build/$(BINARY_NAME) -tags=jsoniter -v ./
 
-run:
-	$(GOBUILD) -o ./build/$(BINARY_NAME) -tags=jsoniter -v ./
+run: build
 	./build/$(BINARY_NAME)
 
 test:

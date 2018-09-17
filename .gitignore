@@ -1,6 +1,6 @@
 /.idea
-/log/*
-!/log/.gitkeep
+/runtime/log/*
+!/runtime/log/.gitkeep
 /build/*
 !/build/.gitkeep
 /vendor/*

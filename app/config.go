@@ -1,4 +1,4 @@
-package config
+package app
 
 import (
 	"github.com/fsnotify/fsnotify"
@@ -11,7 +11,7 @@ type Config struct {
 	Name string
 }
 
-func Init(cfg string) error {
+func InitConfig(cfg string) error {
 	c := Config{
 		Name: cfg,
 	}
@@ -20,26 +20,9 @@ func Init(cfg string) error {
 		return err
 	}
 
-	c.initLog()
-
 	c.watchConfig()
 
 	return nil
-}
-
-func (c *Config) initLog() {
-	passLagerCfg := log.PassLagerCfg{
-		Writers:        viper.GetString("log.writers"),
-		LoggerLevel:    viper.GetString("log.logger_level"),
-		LoggerFile:     viper.GetString("log.logger_file"),
-		LogFormatText:  viper.GetBool("log.log_format_text"),
-		RollingPolicy:  viper.GetString("log.rollingPolicy"),
-		LogRotateDate:  viper.GetInt("log.log_rotate_date"),
-		LogRotateSize:  viper.GetInt("log.log_rotate_size"),
-		LogBackupCount: viper.GetInt("log.log_backup_count"),
-	}
-
-	log.InitWithConfig(&passLagerCfg)
 }
 
 func (c *Config) initConfig() error {
@@ -51,7 +34,7 @@ func (c *Config) initConfig() error {
 	}
 	viper.SetConfigType("yaml")
 	viper.AutomaticEnv()
-	viper.SetEnvPrefix("APISERVER")
+	viper.SetEnvPrefix("ALBEDO")
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 

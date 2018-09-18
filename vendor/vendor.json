@@ -151,24 +151,6 @@
 			"revisionTime": "2018-09-14T01:48:43Z"
 		},
 		{
-			"checksumSHA1": "43k7wJHq6oW+9ziVxEgxTqgCS2g=",
-			"path": "github.com/lexkong/log",
-			"revision": "972f9cd951fc7e5c8797f1fb2b57b63b09ff4de9",
-			"revisionTime": "2018-06-07T16:51:31Z"
-		},
-		{
-			"checksumSHA1": "v9VgXywtm3G+ZHkRHBdxrgpTNE4=",
-			"path": "github.com/lexkong/log/lager",
-			"revision": "972f9cd951fc7e5c8797f1fb2b57b63b09ff4de9",
-			"revisionTime": "2018-06-07T16:51:31Z"
-		},
-		{
-			"checksumSHA1": "GSL4rNuLecEdY/0v4StiSam0JR8=",
-			"path": "github.com/lexkong/log/lager/color",
-			"revision": "972f9cd951fc7e5c8797f1fb2b57b63b09ff4de9",
-			"revisionTime": "2018-06-07T16:51:31Z"
-		},
-		{
 			"checksumSHA1": "AYZGozgchqe4WcKH/jCZI1flnP8=",
 			"path": "github.com/magiconair/properties",
 			"revision": "c2353362d570a7bfa228149c62842019201cfb71",

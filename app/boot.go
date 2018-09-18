@@ -2,8 +2,8 @@ package app
 
 import (
 	"errors"
-	"github.com/lexkong/log"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 	"net/http"
 	"time"
 )
@@ -20,9 +20,11 @@ func Run() {
 	// Ping the server to make sure the router is working.
 	go func() {
 		if err := pingServer(); err != nil {
-			log.Fatal("The router has no response, or it might took too long to start up.", err)
+			Logger.Fatal("The router has no response, or it might took too long to start up",
+				zap.String("err", err.Error()),
+			)
 		}
-		log.Debug("The router has been deployed successfully")
+		Logger.Debug("The router has been deployed successfully")
 	}()
 }
 
@@ -36,7 +38,7 @@ func pingServer() error {
 		}
 
 		// Sleep for a second to continue the next ping.
-		log.Info("Waiting for the router, retry in 1 second.")
+		Logger.Debug("Waiting for the router, retry in 1 second")
 		time.Sleep(time.Second)
 	}
 	return errors.New("can not connect to the router")

@@ -2,19 +2,20 @@ package app
 
 import (
 	"fmt"
-	"github.com/lexkong/log"
 	// MySQL driver
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/spf13/viper"
+	"github.com/zqhong/albedo/util"
+	"go.uber.org/zap"
 )
+
+var DB *Database
 
 type Database struct {
 	Self   *gorm.DB
 	Docker *gorm.DB
 }
-
-var DB *Database
 
 func InitDb() {
 	DB = &Database{
@@ -60,7 +61,9 @@ func openDB(username, password, addr, name string) *gorm.DB {
 
 	db, err := gorm.Open("mysql", config)
 	if err != nil {
-		log.Errorf(err, "Database connection failed. Database name: %s", name)
+		Logger.Error(fmt.Sprintf("Database connection failed. Database name: %s", name),
+			zap.String("err", err.Error()),
+		)
 	}
 
 	setupDB(db)
@@ -69,7 +72,10 @@ func openDB(username, password, addr, name string) *gorm.DB {
 }
 
 func setupDB(db *gorm.DB) {
-	db.LogMode(viper.GetBool("gormlog"))
+	if util.IsDebug() {
+		db.LogMode(true)
+	}
+
 	// 用于设置闲置的连接数.设置闲置的连接数则当开启的一个连接使用完成后可以放在池里等候下一次使用
 	db.DB().SetMaxIdleConns(0)
 }

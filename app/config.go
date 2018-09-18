@@ -1,8 +1,8 @@
 package app
 
 import (
+	"fmt"
 	"github.com/fsnotify/fsnotify"
-	"github.com/lexkong/log"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"strings"
@@ -52,6 +52,6 @@ func (c *Config) initViper() error {
 func (c *Config) watchConfig() {
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		log.Infof("Config file changed: %s", e.Name)
+		Logger.Info(fmt.Sprintf("Config file changed: %s", e.Name))
 	})
 }

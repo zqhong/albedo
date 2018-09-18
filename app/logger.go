@@ -1,41 +1,32 @@
 package app
 
 import (
-	"github.com/lexkong/log"
-	"github.com/spf13/viper"
+	"github.com/zqhong/albedo/util"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
-// logger instance
 var Logger *zap.Logger
 
 func InitLogger() {
-	passLagerCfg := log.PassLagerCfg{
-		Writers:        viper.GetString("log.writers"),
-		LoggerLevel:    viper.GetString("log.logger_level"),
-		LoggerFile:     viper.GetString("log.logger_file"),
-		LogFormatText:  viper.GetBool("log.log_format_text"),
-		RollingPolicy:  viper.GetString("log.rollingPolicy"),
-		LogRotateDate:  viper.GetInt("log.log_rotate_date"),
-		LogRotateSize:  viper.GetInt("log.log_rotate_size"),
-		LogBackupCount: viper.GetInt("log.log_backup_count"),
+	logLevel := zap.InfoLevel
+	if util.IsDebug() {
+		logLevel = zap.DebugLevel
 	}
 
-	log.InitWithConfig(&passLagerCfg)
-
 	w := zapcore.AddSync(&lumberjack.Logger{
-		Filename:   "/var/log/myapp/foo.log",
-		MaxSize:    500, // megabytes
-		MaxBackups: 3,
-		MaxAge:     28, // days
+		Filename:   "runtime/log/albedo-zap.log",
+		MaxSize:    50, // megabytes
+		MaxBackups: 20,
+		MaxAge:     30, // days
 	})
 	core := zapcore.NewCore(
 		zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig()),
 		w,
-		zap.InfoLevel,
+		logLevel,
 	)
-	Logger := zap.New(core)
+
+	Logger = zap.New(core)
 	defer Logger.Sync()
 }

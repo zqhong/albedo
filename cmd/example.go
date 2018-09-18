@@ -7,8 +7,8 @@ import (
 
 var exampleCmd = &cobra.Command{
 	Use:   "example",
-	Short: "",
-	Long:  `示例命令`,
+	Short: "示例命令",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("example called")
 	},

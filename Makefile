@@ -9,12 +9,19 @@ CLI_BIN_NAME=albedo-cli
 
 all: build
 
-build: gotool
+build: build-web build-cli
+
+build-web: gotool
 	$(GOBUILD) -ldflags="-s -w" -o ./build/$(WEB_BIN_NAME) -tags=jsoniter -v web.go
+
+build-cli: gotool
 	$(GOBUILD) -ldflags="-s -w" -o ./build/$(CLI_BIN_NAME) -tags=jsoniter -v cli.go
 
-run: build
+run-web: build-web
 	./build/$(WEB_BIN_NAME)
+
+run-cli: build-cli
+	./build/$(CLI_BIN_NAME)
 
 test:
 	$(GOTEST) -v ./
@@ -22,6 +29,7 @@ test:
 clean:
 	$(GOCLEAN)
 	rm -f ./build/$(WEB_BIN_NAME)
+	rm -f ./build/$(CLI_BIN_NAME)
 
 deps:
 	$(GOGET) github.com/kardianos/govendor

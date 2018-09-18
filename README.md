@@ -12,6 +12,7 @@
 * 日志记录：[onelog](https://github.com/francoispqt/onelog)
 * 命令行：[cobra](https://github.com/spf13/cobra)
 * 平滑重启：[endless](https://github.com/fvbock/endless)
+* Redis：[go-redis/redis](github.com/go-redis/redis)
 
 ## 辅助库/组件
 * 包依赖管理：[govendor](https://github.com/kardianos/govendor)

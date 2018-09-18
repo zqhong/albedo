@@ -67,6 +67,18 @@
 			"revisionTime": "2018-09-17T07:08:11Z"
 		},
 		{
+			"checksumSHA1": "MOx56+IsEj2NlbUH8C1MsESxU/A=",
+			"path": "github.com/go-akka/configuration",
+			"revision": "6065b2d05c3b6fe74694a73c9673806a970679e0",
+			"revisionTime": "2018-04-18T11:07:49Z"
+		},
+		{
+			"checksumSHA1": "0RZRUC/4/KYQja5NmnVOCsMeMdw=",
+			"path": "github.com/go-akka/configuration/hocon",
+			"revision": "6065b2d05c3b6fe74694a73c9673806a970679e0",
+			"revisionTime": "2018-04-18T11:07:49Z"
+		},
+		{
 			"checksumSHA1": "z88m4mr9J/lSV81mt0dukryXf2o=",
 			"path": "github.com/go-redis/redis",
 			"revision": "40dbb03d62c911e688629ba5aac207b751e6e095",
@@ -119,6 +131,12 @@
 			"path": "github.com/go-sql-driver/mysql",
 			"revision": "99ff426eb706cffe92ff3d058e168b278cabf7c7",
 			"revisionTime": "2018-07-19T07:19:42Z"
+		},
+		{
+			"checksumSHA1": "veCPvIFjVVzrNGrTF+sG8TkcStg=",
+			"path": "github.com/gogap/config",
+			"revision": "a1522129698c2ffaf1089351ad23156a1208ed09",
+			"revisionTime": "2018-04-18T14:08:18Z"
 		},
 		{
 			"checksumSHA1": "GaJLoEuMGnP5ofXvuweAI4wx06U=",
@@ -221,6 +239,12 @@
 			"path": "github.com/json-iterator/go",
 			"revision": "2433035e513208b0f7bd5b50d0aecd889b2c1ff8",
 			"revisionTime": "2018-09-14T01:48:43Z"
+		},
+		{
+			"checksumSHA1": "cl9bdp4vvusDqC44P6NOtMK5tIU=",
+			"path": "github.com/konsorten/go-windows-terminal-sequences",
+			"revision": "b729f2633dfe35f4d1d8a32385f6685610ce1cb5",
+			"revisionTime": "2018-04-02T22:36:58Z"
 		},
 		{
 			"checksumSHA1": "AYZGozgchqe4WcKH/jCZI1flnP8=",
@@ -337,8 +361,20 @@
 			"revisionTime": "2018-01-22T17:25:45Z"
 		},
 		{
+			"checksumSHA1": "BGm8lKZmvJbf/YOJLeL1rw2WVjA=",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "0e37d006457bf46f9e6692014ba72ef82c33022c",
+			"revisionTime": "2018-06-14T19:19:50Z"
+		},
+		{
 			"checksumSHA1": "GKC8IFNbSdF5HKJVx+Cm/3ASlH8=",
 			"path": "golang.org/x/sys/unix",
+			"revision": "d0be0721c37eeb5299f245a996a483160fc36940",
+			"revisionTime": "2018-09-09T03:34:56Z"
+		},
+		{
+			"checksumSHA1": "wvpEa7a7bm3i833AmLpSarI51Yc=",
+			"path": "golang.org/x/sys/windows",
 			"revision": "d0be0721c37eeb5299f245a996a483160fc36940",
 			"revisionTime": "2018-09-09T03:34:56Z"
 		},

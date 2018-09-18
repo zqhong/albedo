@@ -1,32 +1,37 @@
 package app
 
 import (
+	"fmt"
+	"github.com/francoispqt/onelog"
 	"github.com/zqhong/albedo/util"
-	"go.uber.org/zap"
-	"go.uber.org/zap/zapcore"
-	"gopkg.in/natefinch/lumberjack.v2"
+	"os"
+	"time"
 )
 
-var Logger *zap.Logger
+var Logger *onelog.Logger
 
 func InitLogger() {
-	logLevel := zap.InfoLevel
-	if util.IsDebug() {
-		logLevel = zap.DebugLevel
+	filePath := "runtime/log/albedo.log"
+	f, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	if err != nil {
+		fmt.Println(err)
 	}
+	writer := os.NewFile(f.Fd(), filePath)
 
-	w := zapcore.AddSync(&lumberjack.Logger{
-		Filename:   "runtime/log/albedo-zap.log",
-		MaxSize:    50, // megabytes
-		MaxBackups: 20,
-		MaxAge:     30, // days
+	if util.IsDebug() {
+		Logger = onelog.New(
+			writer,
+			onelog.ALL,
+		)
+	} else {
+		Logger = onelog.New(
+			writer,
+			onelog.INFO|onelog.WARN|onelog.ERROR|onelog.FATAL,
+		)
+	}
+	Logger.Hook(func(e onelog.Entry) {
+		e.String("time", time.Now().Format("2006/01/02 15:04:05"))
 	})
-	core := zapcore.NewCore(
-		zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig()),
-		w,
-		logLevel,
-	)
 
-	Logger = zap.New(core)
-	defer Logger.Sync()
+	Logger.Debug("logger init successful")
 }

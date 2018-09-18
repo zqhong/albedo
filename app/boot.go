@@ -2,13 +2,14 @@ package app
 
 import (
 	"errors"
+	"fmt"
+	"github.com/francoispqt/onelog"
 	"github.com/spf13/viper"
-	"go.uber.org/zap"
 	"net/http"
 	"time"
 )
 
-func Run() {
+func Init() {
 	InitConfig()
 
 	InitLogger()
@@ -16,13 +17,22 @@ func Run() {
 	InitDb()
 
 	InitGin()
+}
 
+func Run() {
+	Logger.Debug(fmt.Sprintf("Start to listening the incoming requests on http address: %s", viper.GetString("addr")))
+	Logger.Info(http.ListenAndServe(viper.GetString("addr"), Engine).Error())
+
+	CheckServer()
+}
+
+func CheckServer() {
 	// Ping the server to make sure the router is working.
 	go func() {
 		if err := pingServer(); err != nil {
-			Logger.Fatal("The router has no response, or it might took too long to start up",
-				zap.String("err", err.Error()),
-			)
+			Logger.FatalWithFields("The router has no response, or it might took too long to start up", func(e onelog.Entry) {
+				e.String("err", err.Error())
+			})
 		}
 		Logger.Debug("The router has been deployed successfully")
 	}()

@@ -7,6 +7,18 @@
 			"revision": ""
 		},
 		{
+			"checksumSHA1": "xVvXjpVtGsaxN8K01wOJatazKKQ=",
+			"path": "github.com/francoispqt/gojay",
+			"revision": "2f2cca6aadb7a17f07ce1223814f81606ed90e80",
+			"revisionTime": "2018-09-13T03:34:46Z"
+		},
+		{
+			"checksumSHA1": "VAKhdpQwrS/W9H7kjWqCoQl05gc=",
+			"path": "github.com/francoispqt/onelog",
+			"revision": "78cfad0b996d5436370accd3f61d23f408e07b48",
+			"revisionTime": "2018-08-28T04:53:21Z"
+		},
+		{
 			"checksumSHA1": "7NP1qUMF8Kx1y0zANxx0e+oq9Oo=",
 			"path": "github.com/fsnotify/fsnotify",
 			"revision": "ccc981bf80385c528a65fbfdd49bf2d8da22aa23",
@@ -239,42 +251,6 @@
 			"path": "go.uber.org/multierr",
 			"revision": "ddea229ff1dff9e6fe8a6c0344ac73b09e81fce5",
 			"revisionTime": "2018-01-22T17:25:45Z"
-		},
-		{
-			"checksumSHA1": "bs4Qet93Z8f2eB8MVdM2hXXTyso=",
-			"path": "go.uber.org/zap",
-			"revision": "67bc79d13d155c02fd008f721863ff8cc5f30659",
-			"revisionTime": "2018-08-14T18:34:19Z"
-		},
-		{
-			"checksumSHA1": "eC/XVln77aRfE/VocbN0NWdlRdg=",
-			"path": "go.uber.org/zap/buffer",
-			"revision": "67bc79d13d155c02fd008f721863ff8cc5f30659",
-			"revisionTime": "2018-08-14T18:34:19Z"
-		},
-		{
-			"checksumSHA1": "MuxOAtZEsJitlWBzhmpm2vGiHok=",
-			"path": "go.uber.org/zap/internal/bufferpool",
-			"revision": "67bc79d13d155c02fd008f721863ff8cc5f30659",
-			"revisionTime": "2018-08-14T18:34:19Z"
-		},
-		{
-			"checksumSHA1": "uC0L9eCSAYcCWNC8udJk/t1vvIU=",
-			"path": "go.uber.org/zap/internal/color",
-			"revision": "67bc79d13d155c02fd008f721863ff8cc5f30659",
-			"revisionTime": "2018-08-14T18:34:19Z"
-		},
-		{
-			"checksumSHA1": "b80CJExrVpXu3SA1iCQ6uLqTn2c=",
-			"path": "go.uber.org/zap/internal/exit",
-			"revision": "67bc79d13d155c02fd008f721863ff8cc5f30659",
-			"revisionTime": "2018-08-14T18:34:19Z"
-		},
-		{
-			"checksumSHA1": "iH3qg/pvsxQ9XW5t8FTc6veuYhY=",
-			"path": "go.uber.org/zap/zapcore",
-			"revision": "67bc79d13d155c02fd008f721863ff8cc5f30659",
-			"revisionTime": "2018-08-14T18:34:19Z"
 		},
 		{
 			"checksumSHA1": "GKC8IFNbSdF5HKJVx+Cm/3ASlH8=",

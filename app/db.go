@@ -3,11 +3,11 @@ package app
 import (
 	"fmt"
 	// MySQL driver
+	"github.com/francoispqt/onelog"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/spf13/viper"
 	"github.com/zqhong/albedo/util"
-	"go.uber.org/zap"
 )
 
 var DB *Database
@@ -61,9 +61,9 @@ func openDB(username, password, addr, name string) *gorm.DB {
 
 	db, err := gorm.Open("mysql", config)
 	if err != nil {
-		Logger.Error(fmt.Sprintf("Database connection failed. Database name: %s", name),
-			zap.String("err", err.Error()),
-		)
+		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Database name: %s", name), func(e onelog.Entry) {
+			e.String("err", err.Error())
+		})
 	}
 
 	setupDB(db)

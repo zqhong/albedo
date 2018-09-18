@@ -2,15 +2,6 @@ runmode: debug
 addr: :8080
 name: albedo
 url: http://127.0.0.1:8080
-log:
-  writers: file,stdout
-  logger_level: DEBUG
-  logger_file: runtime/log/albedo.log
-  log_format_text: false
-  rollingPolicy: daily
-  log_rotate_date: 1
-  log_rotate_size: 1
-  log_backup_count: 7
 db:
   name: db_apiserver
   addr: 127.0.0.1:3306

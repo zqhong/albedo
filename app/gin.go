@@ -1,12 +1,9 @@
 package app
 
 import (
+	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
-	"net/http"
-
-	"fmt"
-	"github.com/gin-contrib/pprof"
 	"github.com/zqhong/albedo/handler"
 	"github.com/zqhong/albedo/pkg/errno"
 	"github.com/zqhong/albedo/util"
@@ -24,9 +21,6 @@ func InitGin() {
 	loadRoutes(
 	// Middlwares.
 	)
-
-	Logger.Debug(fmt.Sprintf("Start to listening the incoming requests on http address: %s", viper.GetString("addr")))
-	Logger.Info(http.ListenAndServe(viper.GetString("addr"), Engine).Error())
 }
 
 func loadRoutes(mw ...gin.HandlerFunc) {

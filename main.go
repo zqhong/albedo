@@ -6,8 +6,10 @@ import (
 )
 
 func main() {
-	app.Run()
+	app.Init()
 
 	// 加载用户自定义的路由
-	router.RegisterApiRouter(app.Engine)
+	router.RegisterApiRouter()
+
+	app.Run()
 }

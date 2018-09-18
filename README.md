@@ -11,10 +11,42 @@
 * 配置管理：[viper](https://github.com/spf13/viper)
 * 日志记录：[onelog](https://github.com/francoispqt/onelog)
 * 命令行：[cobra](https://github.com/spf13/cobra)
+* 平滑重启：[endless](https://github.com/fvbock/endless)
 
 ## 辅助库/组件
 * 包依赖管理：[govendor](https://github.com/kardianos/govendor)
 * Makefile：内置快速使用的命令
+
+## Makefile 内置命令
+```bash
+# 同时编译 web 和 cli
+$ make build
+
+$ make build-web
+$ make build-cli
+
+$ make run-web
+$ make -run-cli
+
+$ make test
+
+$ make clean
+
+# 安装依赖
+$ make deps
+```
+
+## admin.sh 内置命令
+```bash
+$ bash admin.sh start
+
+$ bash admin.sh stop
+
+# 利用 endless 实现平滑重启
+$ bash admin restart
+
+$ bash admin status
+```
 
 ## 目录结构
 ```

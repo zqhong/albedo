@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/francoispqt/onelog"
+	"github.com/fvbock/endless"
 	"github.com/spf13/viper"
 	"net/http"
 	"time"
@@ -29,7 +30,7 @@ func InitCli() {
 
 func RunWeb() {
 	Logger.Debug(fmt.Sprintf("Start to listening the incoming requests on http address: %s", viper.GetString("addr")))
-	Logger.Info(http.ListenAndServe(viper.GetString("addr"), Engine).Error())
+	Logger.Info(endless.ListenAndServe(viper.GetString("addr"), Engine).Error())
 
 	CheckServer()
 }

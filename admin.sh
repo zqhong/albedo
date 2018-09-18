@@ -1,10 +1,9 @@
 #!/bin/bash
 
-SERVER="apiserver"
-BASE_DIR=$PWD
+SERVER="albedo"
+BASE_DIR=$PWD/build
 INTERVAL=2
 
-# 命令行参数，需要手动指定
 ARGS=""
 
 function start()
@@ -14,7 +13,7 @@ function start()
 		exit 1
 	fi
 
-	nohup $BASE_DIR/$SERVER $ARGS  server &>/dev/null &
+	nohup $BASE_DIR/$SERVER $ARGS  &>/dev/null &
 
 	echo "sleeping..." &&  sleep $INTERVAL
 
@@ -48,6 +47,17 @@ function stop()
 	fi
 }
 
+function restart()
+{
+	if [ "`pgrep $SERVER -u $UID`" != "" ];then
+		kill -s HUP `pgrep $SERVER -u $UID`
+		echo "$SERVER restart successful"
+    else
+        echo "$SERVER is not running, restart fail"
+        exit 1
+	fi
+}
+
 case "$1" in
 	'start')
 	start
@@ -59,7 +69,7 @@ case "$1" in
 	status
 	;;
 	'restart')
-	stop && start
+	restart
 	;;
 	*)
 	echo "usage: $0 {start|stop|restart|status}"

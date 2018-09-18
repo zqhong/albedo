@@ -7,7 +7,6 @@ import (
 	"go/build"
 	"io"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -66,7 +65,6 @@ func unzipDir(zipFile, dir string) {
 
 	r, err := zip.OpenReader(zipFile)
 	if err != nil {
-		log.Fatalf("Open zip file failed: %s\n", err.Error())
 		os.Exit(1)
 	}
 	defer r.Close()

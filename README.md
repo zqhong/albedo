@@ -18,6 +18,34 @@
 * 包依赖管理：[govendor](https://github.com/kardianos/govendor)
 * Makefile：内置快速使用的命令
 
+## 安装
+```bash
+$ cd $GOPATH/src/github.com/your_name
+
+# 打开 [albedo-installer](https://gitee.com/zqhong/albedo-installer)，下载对应操作系统的安装器
+
+# 以 macOS 系统为例，这里的项目名为 demo
+$ chmod +x installer-darwin
+$ ./installer-darwin -project-name=demo
+
+$ cd demo
+
+# 安装 golang 的第三方依赖包
+# 请确保 $GOPATH/bin 目录在环境变量 PATH 下
+$ make deps
+
+$ make build
+
+# 复制并修改配置文件
+$ cp conf/config.yaml.example conf/config.yaml
+
+# 测试
+$ ./build/web
+$ ./build/cli
+
+# 如果启动失败，检查 runtime/albedo.log 日志文件
+```
+
 ## Makefile 内置命令
 ```bash
 # 同时编译 web 和 cli

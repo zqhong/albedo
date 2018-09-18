@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	app.Init()
+	app.InitWeb()
 
 	// 加载用户自定义的路由
 	router.RegisterApiRouter()
 
-	app.Run()
+	app.RunWeb()
 }

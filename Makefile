@@ -4,22 +4,24 @@ GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
-BINARY_NAME=albedo
+WEB_BIN_NAME=albedo
+CLI_BIN_NAME=albedo-cli
 
 all: build
 
 build: gotool
-	$(GOBUILD) -ldflags="-s -w" -o ./build/$(BINARY_NAME) -tags=jsoniter -v ./
+	$(GOBUILD) -ldflags="-s -w" -o ./build/$(WEB_BIN_NAME) -tags=jsoniter -v web.go
+	$(GOBUILD) -ldflags="-s -w" -o ./build/$(CLI_BIN_NAME) -tags=jsoniter -v cli.go
 
 run: build
-	./build/$(BINARY_NAME)
+	./build/$(WEB_BIN_NAME)
 
 test:
 	$(GOTEST) -v ./
 
 clean:
 	$(GOCLEAN)
-	rm -f ./build/$(BINARY_NAME)
+	rm -f ./build/$(WEB_BIN_NAME)
 
 deps:
 	$(GOGET) github.com/kardianos/govendor

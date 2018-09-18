@@ -133,6 +133,12 @@
 			"revisionTime": "2018-09-06T18:38:39Z"
 		},
 		{
+			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
+			"path": "github.com/inconshreveable/mousetrap",
+			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
+			"revisionTime": "2014-10-17T20:07:13Z"
+		},
+		{
 			"checksumSHA1": "wcP5L7BhrxVQMZUYrDnjmxptNe8=",
 			"path": "github.com/jinzhu/gorm",
 			"revision": "5be9bd34135805e0332b993378864b159784d8a8",
@@ -175,6 +181,12 @@
 			"revisionTime": "2018-08-30T10:17:45Z"
 		},
 		{
+			"checksumSHA1": "a58zUNtDH/gEd6F6KI3FqT2iEo0=",
+			"path": "github.com/mitchellh/go-homedir",
+			"revision": "ae18d6b8b3205b561c79e8e5f69bff09736185f4",
+			"revisionTime": "2018-08-24T00:42:36Z"
+		},
+		{
 			"checksumSHA1": "4VVcCBCqn1hvMaURZyPSKqkMc4o=",
 			"path": "github.com/mitchellh/mapstructure",
 			"revision": "fa473d140ef3c6adf42d6b391fe76707f1f243c8",
@@ -215,6 +227,24 @@
 			"path": "github.com/spf13/cast",
 			"revision": "8965335b8c7107321228e3e3702cab9832751bac",
 			"revisionTime": "2018-02-14T17:35:30Z"
+		},
+		{
+			"checksumSHA1": "1nDHkiFm79ufUiLc80zG1Y/L9cg=",
+			"path": "github.com/spf13/cobra",
+			"revision": "8d114be902bc9f08717804830a55c48378108a28",
+			"revisionTime": "2018-09-15T22:22:04Z"
+		},
+		{
+			"checksumSHA1": "VmWKAW0vadKffeV3aCZxG4tQNfM=",
+			"path": "github.com/spf13/cobra/cobra",
+			"revision": "8d114be902bc9f08717804830a55c48378108a28",
+			"revisionTime": "2018-09-15T22:22:04Z"
+		},
+		{
+			"checksumSHA1": "PJgIXJYpWBau5TWFC77OgyxDXN0=",
+			"path": "github.com/spf13/cobra/cobra/cmd",
+			"revision": "8d114be902bc9f08717804830a55c48378108a28",
+			"revisionTime": "2018-09-15T22:22:04Z"
 		},
 		{
 			"checksumSHA1": "fL/aH2pPCg51QUFedpS6EcT94KU=",

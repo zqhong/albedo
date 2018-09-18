@@ -10,6 +10,7 @@
 * json 序列化库：[json-iterator/go](https://github.com/json-iterator/go)
 * 配置管理：[viper](https://github.com/spf13/viper)
 * 日志记录：[onelog](https://github.com/francoispqt/onelog)
+* 命令行：[cobra](https://github.com/spf13/cobra)
 
 ## 辅助库/组件
 * 包依赖管理：[govendor](https://github.com/kardianos/govendor)

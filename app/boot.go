@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func Init() {
+func InitWeb() {
 	InitConfig()
 
 	InitLogger()
@@ -19,7 +19,15 @@ func Init() {
 	InitGin()
 }
 
-func Run() {
+func InitCli() {
+	InitConfig()
+
+	InitLogger()
+
+	InitDb()
+}
+
+func RunWeb() {
 	Logger.Debug(fmt.Sprintf("Start to listening the incoming requests on http address: %s", viper.GetString("addr")))
 	Logger.Info(http.ListenAndServe(viper.GetString("addr"), Engine).Error())
 

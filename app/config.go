@@ -3,6 +3,8 @@ package app
 import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"log"
+	"os"
 	"strings"
 )
 
@@ -10,7 +12,7 @@ type Config struct {
 	Name string
 }
 
-func InitConfig() error {
+func InitConfig() {
 	cfg := pflag.StringP("config", "c", "", "config file path.")
 	pflag.Parse()
 
@@ -19,12 +21,11 @@ func InitConfig() error {
 	}
 
 	if err := c.initViper(); err != nil {
-		return err
+		log.Printf("初始化 config 服务出错：%s\n", err.Error())
+		os.Exit(1)
 	}
 
 	viper.WatchConfig()
-
-	return nil
 }
 
 func (c *Config) initViper() error {

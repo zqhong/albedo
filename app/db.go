@@ -8,6 +8,8 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/spf13/viper"
 	"github.com/zqhong/albedo/util"
+	"log"
+	"os"
 )
 
 var DB *Database
@@ -64,6 +66,8 @@ func openDB(username, password, addr, name string) *gorm.DB {
 		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Database name: %s", name), func(e onelog.Entry) {
 			e.String("err", err.Error())
 		})
+		log.Printf("初始化 db 服务出错：%s\n", err.Error())
+		os.Exit(1)
 	}
 
 	setupDB(db)

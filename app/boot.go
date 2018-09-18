@@ -17,6 +17,8 @@ func InitWeb() {
 
 	InitDb()
 
+	InitRedis()
+
 	InitGin()
 }
 
@@ -26,6 +28,8 @@ func InitCli() {
 	InitLogger()
 
 	InitDb()
+
+	InitRedis()
 }
 
 func RunWeb() {

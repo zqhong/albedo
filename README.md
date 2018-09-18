@@ -76,4 +76,5 @@ $ bash admin status
 ## 参考
 * [lexkong/apiserver](https://github.com/lexkong/apiserver)
 * [chenhg5/morningo](https://github.com/chenhg5/morningo)
+* [cg33/morningo-installer](https://gitee.com/cg33/morningo-installer)
 * [inhere/go-gin-skeleton](https://github.com/inhere/go-gin-skeleton)

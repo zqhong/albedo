@@ -2,6 +2,11 @@ runmode: debug
 addr: :8080
 name: albedo
 url: http://127.0.0.1:8080
+redis:
+  host: 127.0.0.1
+  port: 6379
+  password: password
+  db: 1
 db:
   name: db_apiserver
   addr: 127.0.0.1:3306

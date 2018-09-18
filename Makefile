@@ -10,6 +10,9 @@ INSTALLER_BIN_NAME=installer
 
 all: build
 
+install: deps build
+	cp -nv conf/config.yaml.example conf/config.yaml
+
 build: build-web build-cli
 
 build-web: gotool

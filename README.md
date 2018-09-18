@@ -30,14 +30,10 @@ $ ./installer-darwin -project-name=demo
 
 $ cd demo
 
-# 安装 golang 的第三方依赖包
 # 请确保 $GOPATH/bin 目录在环境变量 PATH 下
-$ make deps
+$ make install
 
-$ make build
-
-# 复制并修改配置文件
-$ cp conf/config.yaml.example conf/config.yaml
+# 修改配置文件 conf/config.yaml
 
 # 测试
 $ ./build/web

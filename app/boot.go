@@ -6,6 +6,7 @@ import (
 	"github.com/francoispqt/onelog"
 	"github.com/fvbock/endless"
 	"github.com/spf13/viper"
+	"github.com/zqhong/albedo/util"
 	"net/http"
 	"time"
 )
@@ -13,7 +14,7 @@ import (
 func InitWeb() {
 	InitConfig()
 
-	InitLogger()
+	InitLogger(util.GetCurrentDir() + "/../runtime/log/albedo-web.log")
 
 	InitDb()
 
@@ -25,7 +26,7 @@ func InitWeb() {
 func InitCli() {
 	InitConfig()
 
-	InitLogger()
+	InitLogger(util.GetCurrentDir() + "/../runtime/log/albedo-cli.log")
 
 	InitDb()
 

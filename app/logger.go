@@ -10,8 +10,7 @@ import (
 
 var Logger *onelog.Logger
 
-func InitLogger() {
-	filePath := "runtime/log/albedo.log"
+func InitLogger(filePath string) {
 	f, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Println(err)

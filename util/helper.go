@@ -3,6 +3,8 @@ package util
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
+	"path"
+	"runtime"
 )
 
 func IsDebug() bool {
@@ -10,4 +12,14 @@ func IsDebug() bool {
 		return true
 	}
 	return false
+}
+
+func GetCurrentFile() string {
+	_, filename, _, _ := runtime.Caller(1)
+	return filename
+}
+
+func GetCurrentDir() string {
+	_, filename, _, _ := runtime.Caller(1)
+	return path.Dir(filename)
 }

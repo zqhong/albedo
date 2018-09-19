@@ -14,7 +14,7 @@ import (
 func InitWeb() {
 	InitConfig()
 
-	InitLogger(util.GetCurrentDir() + "/../runtime/log/albedo-web.log")
+	InitLogger(util.GetRootDir() + "/runtime/log/albedo-web.log")
 
 	InitDb()
 
@@ -26,7 +26,7 @@ func InitWeb() {
 func InitCli() {
 	InitConfig()
 
-	InitLogger(util.GetCurrentDir() + "/../runtime/log/albedo-cli.log")
+	InitLogger(util.GetRootDir() + "/runtime/log/albedo-web.log")
 
 	InitDb()
 

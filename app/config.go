@@ -1,12 +1,12 @@
 package app
 
 import (
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"log"
 	"os"
 	"strings"
-	"github.com/fsnotify/fsnotify"
 )
 
 type Config struct {

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVER="albedo"
+SERVER="albedo-web"
 BASE_DIR=$PWD/build
 INTERVAL=2
 

@@ -68,9 +68,9 @@ $ bash admin.sh start
 $ bash admin.sh stop
 
 # 利用 endless 实现平滑重启
-$ bash admin restart
+$ bash admin.sh restart
 
-$ bash admin status
+$ bash admin.sh status
 ```
 
 ## 目录结构

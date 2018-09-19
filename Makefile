@@ -4,8 +4,8 @@ GOBUILD=$(GOCMD) build
 GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
-WEB_BIN_NAME=web
-CLI_BIN_NAME=cli
+WEB_BIN_NAME=albedo-web
+CLI_BIN_NAME=albedo-cli
 INSTALLER_BIN_NAME=installer
 
 all: build
@@ -42,7 +42,7 @@ clean:
 
 deps:
 	$(GOGET) github.com/kardianos/govendor
-	govendor sync
+	govendor sync -v
 
 gotool:
 	gofmt -w .

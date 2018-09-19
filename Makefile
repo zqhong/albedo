@@ -6,7 +6,7 @@ GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 WEB_BIN_NAME=albedo-web
 CLI_BIN_NAME=albedo-cli
-INSTALLER_BIN_NAME=installer
+INSTALLER_BIN_NAME=albedo-installer
 
 all: build
 
@@ -37,8 +37,7 @@ test:
 
 clean:
 	$(GOCLEAN)
-	rm -f ./build/$(WEB_BIN_NAME)
-	rm -f ./build/$(CLI_BIN_NAME)
+	find ./build -type f | grep -v ".gitkeep" | xargs rm -v
 
 deps:
 	$(GOGET) github.com/kardianos/govendor

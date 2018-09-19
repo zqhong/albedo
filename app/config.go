@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"github.com/fsnotify/fsnotify"
 )
 
 type Config struct {
@@ -26,6 +27,9 @@ func InitConfig() {
 	}
 
 	viper.WatchConfig()
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		Logger.Debug("Config file changed:" + e.Name)
+	})
 }
 
 func (c *Config) initViper() error {

@@ -42,6 +42,13 @@ $ ./build/cli
 # 如果启动失败，检查 runtime/albedo.log 日志文件
 ```
 
+## 新建命令
+```bash
+# 新产生的文件在 cmd 目录下
+# 重新编译 cli 之后，使用 ./build/albedo-cli 即可看到新命令的帮助提示
+$ cobra add [command name]
+```
+
 ## Makefile 内置命令
 ```bash
 # 同时编译 web 和 cli

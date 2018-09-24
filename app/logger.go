@@ -17,7 +17,7 @@ func InitLogger(filePath string) {
 	}
 	writer := os.NewFile(f.Fd(), filePath)
 
-	if util.IsDebug() {
+	if util.IsDebugMode() {
 		Logger = onelog.New(
 			writer,
 			onelog.ALL,

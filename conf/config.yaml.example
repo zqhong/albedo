@@ -1,5 +1,6 @@
 runmode: debug
 timezone: Asia/Chongqing
+dbLogMode: true
 addr: :8080
 name: albedo
 url: http://127.0.0.1:8080

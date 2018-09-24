@@ -35,7 +35,7 @@ func loadRoutes(mw ...gin.HandlerFunc) {
 		handler.SendResponse(c, errno.MethodNotFound, "")
 	})
 
-	if util.IsDebug() {
+	if util.IsDebugMode() {
 		// 性能分析工具
 		pprof.Register(Engine)
 	}

@@ -7,7 +7,9 @@ import (
 	"github.com/fvbock/endless"
 	"github.com/spf13/viper"
 	"github.com/zqhong/albedo/util"
+	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -15,6 +17,8 @@ func InitWeb() {
 	InitConfig()
 
 	InitLogger(util.GetRootDir() + "/runtime/log/albedo-web.log")
+
+	InitEnv()
 
 	InitDb()
 
@@ -26,11 +30,25 @@ func InitWeb() {
 func InitCli() {
 	InitConfig()
 
-	InitLogger(util.GetRootDir() + "/runtime/log/albedo-web.log")
+	InitLogger(util.GetRootDir() + "/runtime/log/albedo-cli.log")
+
+	InitEnv()
 
 	InitDb()
 
 	InitRedis()
+}
+
+func InitEnv() {
+	loc, err := util.GetLocation()
+
+	if err != nil {
+		log.Println("时区设置失败：" + err.Error())
+		os.Exit(1)
+	}
+
+	time.Local = loc
+	Logger.Debug(fmt.Sprintf("默认时区（%s）设置成功", loc.String()))
 }
 
 func RunWeb() {

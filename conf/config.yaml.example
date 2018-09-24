@@ -1,4 +1,5 @@
 runmode: debug
+timezone: Asia/Chongqing
 addr: :8080
 name: albedo
 url: http://127.0.0.1:8080

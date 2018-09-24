@@ -24,8 +24,6 @@ func InitDb() {
 		Self:   GetSelfDB(),
 		Docker: GetDockerDB(),
 	}
-
-	defer DB.Close()
 }
 
 // used for cli

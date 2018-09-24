@@ -104,6 +104,11 @@ $ bash admin.sh status
 └── vendor                       # vendor目录用来管理依赖包
 ```
 
+## 待完成
+- [ ] 添加测试
+- [ ] 文档支持（Swagger）
+- [ ] 多数据库驱动支持
+
 ## 参考
 * [lexkong/apiserver](https://github.com/lexkong/apiserver)
 * [chenhg5/morningo](https://github.com/chenhg5/morningo)

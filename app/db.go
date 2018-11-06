@@ -2,15 +2,19 @@ package app
 
 import (
 	"fmt"
-	// MySQL driver
+
 	"github.com/francoispqt/onelog"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"github.com/spf13/viper"
 	"log"
 	"os"
 )
 
+// 参考：http://gorm.io/docs/connecting_to_the_database.html
 var DB *Database
 
 type Database struct {
@@ -27,10 +31,7 @@ func InitDb() {
 
 // used for cli
 func InitSelfDB() *gorm.DB {
-	return openDB(viper.GetString("db.username"),
-		viper.GetString("db.password"),
-		viper.GetString("db.addr"),
-		viper.GetString("db.name"))
+	return InitDB("db")
 }
 
 func GetSelfDB() *gorm.DB {
@@ -38,17 +39,66 @@ func GetSelfDB() *gorm.DB {
 }
 
 func InitDockerDB() *gorm.DB {
-	return openDB(viper.GetString("docker_db.username"),
-		viper.GetString("docker_db.password"),
-		viper.GetString("docker_db.addr"),
-		viper.GetString("docker_db.name"))
+	return InitDB("docker_db")
 }
 
 func GetDockerDB() *gorm.DB {
 	return InitDockerDB()
 }
 
-func openDB(username, password, addr, name string) *gorm.DB {
+func InitDB(dbName string) *gorm.DB {
+	driver := viper.GetString(fmt.Sprintf("%s.driver", dbName))
+	if driver == "" {
+		driver = "mysql"
+	}
+
+	if driver == "sqlite" {
+		return openSqliteDB(viper.GetString(fmt.Sprintf("%s.source", dbName)))
+	}
+
+	return openMySQLDB(viper.GetString(fmt.Sprintf("%s.username", dbName)),
+		viper.GetString(fmt.Sprintf("%s.password", dbName)),
+		viper.GetString(fmt.Sprintf("%s.addr", dbName)),
+		viper.GetString(fmt.Sprintf("%s.name", dbName)))
+}
+
+func openSqliteDB(source string) *gorm.DB {
+	db, err := gorm.Open("sqlite3", source)
+	if err != nil {
+		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Source: %s", source), func(e onelog.Entry) {
+			e.String("err", err.Error())
+		})
+		log.Printf("初始化 db 服务出错：%s\n", err.Error())
+		os.Exit(1)
+	}
+
+	return db
+}
+
+func openPgDB(username string, password string, host string, port uint, dbName string) *gorm.DB {
+	config := fmt.Sprintf("host=%s port=%d user=%s dbname=%s password=%s",
+		host,
+		username,
+		password,
+		port,
+		dbName,
+	)
+
+	db, err := gorm.Open("postgres", config)
+	if err != nil {
+		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Database name: %s", dbName), func(e onelog.Entry) {
+			e.String("err", err.Error())
+		})
+		log.Printf("初始化 db 服务出错：%s\n", err.Error())
+		os.Exit(1)
+	}
+
+	setupDB(db)
+
+	return db
+}
+
+func openMySQLDB(username, password, addr, name string) *gorm.DB {
 	config := fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=%t&loc=%s",
 		username,
 		password,
@@ -73,7 +123,9 @@ func openDB(username, password, addr, name string) *gorm.DB {
 }
 
 func setupDB(db *gorm.DB) {
-	db.LogMode(viper.GetBool("dbLogMode"))
+	if viper.GetString("gormMode") == "debug" {
+		db.LogMode(true)
+	}
 
 	// 用于设置闲置的连接数.设置闲置的连接数则当开启的一个连接使用完成后可以放在池里等候下一次使用
 	db.DB().SetMaxIdleConns(0)

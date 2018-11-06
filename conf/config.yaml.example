@@ -10,11 +10,14 @@ redis:
   password: password
   db: 1
 db:
+  # 可选值：mysql、sqlite
+  driver: mysql
   name: db_apiserver
   addr: 127.0.0.1:3306
   username: root
   password: root
 docker_db:
+  driver: mysql
   name: db_apiserver
   addr: 127.0.0.1:3306
   username: root

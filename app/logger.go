@@ -2,8 +2,8 @@ package app
 
 import (
 	"fmt"
-	"gitee.com/zqhong/df-server/util"
 	"github.com/astaxie/beego/logs"
+	"github.com/zqhong/albedo/util"
 )
 
 func InitLogger(filePath string) {

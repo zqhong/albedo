@@ -13,6 +13,12 @@
 			"revisionTime": "2018-11-02T17:51:21Z"
 		},
 		{
+			"checksumSHA1": "yX3T7B4g4JawmMzGD1Rl2d52gew=",
+			"path": "github.com/astaxie/beego/cache",
+			"revision": "053a075344c118a5cc41981b29ef612bb53d20ca",
+			"revisionTime": "2018-07-31T13:18:48Z"
+		},
+		{
 			"checksumSHA1": "0rXUgJC/GgF8XbLxmJiMgC4peQQ=",
 			"path": "github.com/denisenkom/go-mssqldb",
 			"revision": "4e0d7dc8888fbb59764060e99b7b68e77a6f9698",

@@ -1,6 +1,7 @@
 package app
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -28,7 +29,7 @@ func InitConfig() {
 
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		Logger.Debug("Config file changed:" + e.Name)
+		logs.Debug("Config file changed:" + e.Name)
 	})
 }
 

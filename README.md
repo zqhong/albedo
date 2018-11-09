@@ -9,7 +9,7 @@
 * db：[gorm](https://github.com/jinzhu/gorm)
 * json 序列化库：[json-iterator/go](https://github.com/json-iterator/go)
 * 配置管理：[viper](https://github.com/spf13/viper)
-* 日志记录：[onelog](https://github.com/francoispqt/onelog)
+* 日志记录：[beego logger](https://beego.me/docs/module/logs.md)
 * 命令行：[cobra](https://github.com/spf13/cobra)
 * 平滑重启：[endless](https://github.com/fvbock/endless)
 * Redis：[go-redis/redis](github.com/go-redis/redis)
@@ -108,7 +108,7 @@ $ bash admin.sh status
 - [ ] 添加测试
 - [ ] 文档支持（Swagger）
 - [x] 多数据库驱动支持
-- [x] 进程级缓存
+- [x] 进程级缓存（MemCache）
 - [x] 定时任务（crontab）
 
 ## 参考

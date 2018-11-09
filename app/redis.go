@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"github.com/astaxie/beego/logs"
 	"github.com/go-redis/redis"
 	"github.com/spf13/viper"
 	"os"
@@ -23,7 +24,7 @@ func InitRedis() {
 	// test
 	_, err := Redis.Ping().Result()
 	if err != nil {
-		Logger.Fatal(err.Error())
+		logs.Error(err.Error())
 		os.Exit(1)
 	}
 

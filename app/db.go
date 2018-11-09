@@ -3,7 +3,7 @@ package app
 import (
 	"fmt"
 
-	"github.com/francoispqt/onelog"
+	"github.com/astaxie/beego/logs"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -63,9 +63,7 @@ func InitDB(dbName string) *gorm.DB {
 func openSqliteDB(source string) *gorm.DB {
 	db, err := gorm.Open("sqlite3", source)
 	if err != nil {
-		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Source: %s", source), func(e onelog.Entry) {
-			e.String("err", err.Error())
-		})
+		logs.Error(fmt.Sprintf("Database connection failed. Source: %s, err: %s", source, err.Error()))
 		log.Printf("初始化 db 服务出错：%s\n", err.Error())
 		os.Exit(1)
 	}
@@ -85,9 +83,7 @@ func openMySQLDB(username, password, addr, name string) *gorm.DB {
 
 	db, err := gorm.Open("mysql", config)
 	if err != nil {
-		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Database name: %s", name), func(e onelog.Entry) {
-			e.String("err", err.Error())
-		})
+		logs.Error(fmt.Sprintf("Database connection failed. Database name: %s, err: %s", name, err.Error()))
 		log.Printf("初始化 db 服务出错：%s\n", err.Error())
 		os.Exit(1)
 	}

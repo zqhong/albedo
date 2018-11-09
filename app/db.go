@@ -7,8 +7,6 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
-	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"github.com/spf13/viper"
 	"log"
 	"os"
@@ -71,29 +69,6 @@ func openSqliteDB(source string) *gorm.DB {
 		log.Printf("初始化 db 服务出错：%s\n", err.Error())
 		os.Exit(1)
 	}
-
-	return db
-}
-
-func openPgDB(username string, password string, host string, port uint, dbName string) *gorm.DB {
-	config := fmt.Sprintf("host=%s port=%d user=%s dbname=%s password=%s",
-		host,
-		username,
-		password,
-		port,
-		dbName,
-	)
-
-	db, err := gorm.Open("postgres", config)
-	if err != nil {
-		Logger.ErrorWithFields(fmt.Sprintf("Database connection failed. Database name: %s", dbName), func(e onelog.Entry) {
-			e.String("err", err.Error())
-		})
-		log.Printf("初始化 db 服务出错：%s\n", err.Error())
-		os.Exit(1)
-	}
-
-	setupDB(db)
 
 	return db
 }

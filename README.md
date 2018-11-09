@@ -107,7 +107,9 @@ $ bash admin.sh status
 ## 待完成
 - [ ] 添加测试
 - [ ] 文档支持（Swagger）
-- [ ] 多数据库驱动支持
+- [x] 多数据库驱动支持
+- [x] 进程级缓存
+- [x] 定时任务（crontab）
 
 ## 参考
 * [lexkong/apiserver](https://github.com/lexkong/apiserver)

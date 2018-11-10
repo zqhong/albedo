@@ -13,6 +13,7 @@
 * 命令行：[cobra](https://github.com/spf13/cobra)
 * 平滑重启：[endless](https://github.com/fvbock/endless)
 * Redis：[go-redis/redis](github.com/go-redis/redis)
+* 任务调度：[robfig/cron](github.com/robfig/cron)
 
 ## 辅助库/组件
 * 包依赖管理：[govendor](https://github.com/kardianos/govendor)

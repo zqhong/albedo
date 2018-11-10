@@ -32,6 +32,18 @@ run-web: build-web
 run-cli: build-cli
 	./build/$(CLI_BIN_NAME)
 
+release: release-cli release-web
+
+release-cli: gotool
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(CLI_BIN_NAME)-linux -v cli.go
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(CLI_BIN_NAME)-win.exe -v cli.go
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(CLI_BIN_NAME)-darwin -v cli.go
+
+release-web: gotool
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(WEB_BIN_NAME)-linux -v web.go
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(WEB_BIN_NAME)-win.exe -v web.go
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(WEB_BIN_NAME)-darwin -v web.go
+
 test:
 	$(GOTEST) -v ./
 

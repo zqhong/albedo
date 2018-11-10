@@ -349,6 +349,12 @@
 			"revisionTime": "2018-07-24T18:49:33Z"
 		},
 		{
+			"checksumSHA1": "xGlhb4NZjBVCNSbb7GIMvhn6mQg=",
+			"path": "github.com/robfig/cron",
+			"revision": "b41be1df696709bb6395fe435af20370037c0b4c",
+			"revisionTime": "2018-05-05T20:34:41Z"
+		},
+		{
 			"checksumSHA1": "RXdGcEWihBEokWLc+LTy/UnI8OM=",
 			"path": "github.com/spf13/afero",
 			"revision": "d40851caa0d747393da1ffb28f7f9d8b4eeffebd",

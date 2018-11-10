@@ -26,8 +26,6 @@ func InitWeb() {
 
 	InitMemCache()
 
-	InitCronWeb()
-
 	InitGin()
 }
 
@@ -43,8 +41,6 @@ func InitCli() {
 	InitRedis()
 
 	InitMemCache()
-
-	InitCronCli()
 }
 
 func InitEnv() {

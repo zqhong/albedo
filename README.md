@@ -110,7 +110,7 @@ $ bash admin.sh status
 - [ ] 文档支持（Swagger）
 - [x] 多数据库驱动支持
 - [x] 进程级缓存（MemCache）
-- [x] 定时任务（crontab）
+- [x] 任务调度（crontab）
 
 ## 参考
 * [lexkong/apiserver](https://github.com/lexkong/apiserver)

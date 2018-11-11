@@ -93,6 +93,7 @@ $ bash admin.sh status
 ├── build                        # 存放编译后的二进制文件
 ├── conf                         # 配置文件存储目录
 │   ├── config.yaml              # 配置文件
+├── cronjob                      # 任务调度相关
 ├── handler                      # MVC 架构中的 C
 │   ├── handler.go
 │   ├── sd                       # 健康检查handler
@@ -103,6 +104,28 @@ $ bash admin.sh status
 ├── runtime                      # 存放临时文件，如日志、pid 文件
 ├── util                         # 工具类函数存放目录
 └── vendor                       # vendor目录用来管理依赖包
+```
+
+## logger 的使用
+参考：[https://beego.me/docs/module/logs.md](https://beego.me/docs/module/logs.md)
+
+## 缓存模块的使用
+参考：[https://beego.me/docs/module/cache.md](https://beego.me/docs/module/cache.md)
+
+## 任务调度的使用
+```golang
+import (
+	"github.com/robfig/cron"
+	"fmt"
+)
+
+c := cron.New()
+
+c.AddFunc("@hourly", func() {
+    fmt.Println("hourly call")
+})
+
+c.Start()
 ```
 
 ## 待完成

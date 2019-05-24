@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/viper"
 	"github.com/zqhong/albedo/handler"
 	"github.com/zqhong/albedo/pkg/errno"
-	"github.com/zqhong/albedo/util"
+	"github.com/zqhong/albedo/util/env"
 	"sync"
 )
 
@@ -41,7 +41,7 @@ func loadRoutes(mw ...gin.HandlerFunc) {
 		handler.SendResponse(c, errno.MethodNotFound, "")
 	})
 
-	if util.IsDebugMode() {
+	if env.IsDebug() {
 		// 性能分析工具
 		pprof.Register(Engine)
 	}

@@ -1,4 +1,4 @@
-package util
+package datetime
 
 import (
 	"github.com/spf13/viper"

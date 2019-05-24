@@ -3,7 +3,7 @@ package app
 import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
-	"github.com/zqhong/albedo/util"
+	"github.com/zqhong/albedo/util/env"
 	"log"
 	"os"
 	"sync"
@@ -14,7 +14,7 @@ var onceLogger sync.Once
 func InitLogger(filePath string) {
 	onceLogger.Do(func() {
 		loggerLevel := logs.LevelInfo
-		if util.IsDebugMode() {
+		if env.IsDebug() {
 			loggerLevel = logs.LevelDebug
 		}
 		loggerConf := fmt.Sprintf(`{"filename":"%s", "level": %d}`, filePath, loggerLevel)

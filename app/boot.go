@@ -7,7 +7,7 @@ import (
 	"github.com/fvbock/endless"
 	"github.com/spf13/viper"
 	"github.com/zqhong/albedo/constant"
-	"github.com/zqhong/albedo/util"
+	"github.com/zqhong/albedo/util/datetime"
 	"log"
 	"net/http"
 	"os"
@@ -64,7 +64,7 @@ func InitPath() {
 }
 
 func InitEnv() {
-	loc, err := util.GetLocation()
+	loc, err := datetime.GetLocation()
 
 	if err != nil {
 		log.Println("时区设置失败：" + err.Error())

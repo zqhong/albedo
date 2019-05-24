@@ -10,7 +10,7 @@ INSTALLER_BIN_NAME=albedo-installer
 
 all: build
 
-install: deps build
+install: build
 	cp -nv conf/config.yaml.example conf/config.yaml
 
 build: build-web build-cli
@@ -50,10 +50,7 @@ test:
 clean:
 	$(GOCLEAN)
 	find ./build -type f | grep -v ".gitkeep" | xargs rm -v
-
-deps:
-	$(GOGET) github.com/kardianos/govendor
-	govendor sync -v
+	find . -type f -name .DS_Store -delete
 
 gotool:
 	gofmt -w .

@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/astaxie/beego/logs"
 	"github.com/jinzhu/gorm"
@@ -12,8 +13,11 @@ import (
 	"os"
 )
 
-// 参考：http://gorm.io/docs/connecting_to_the_database.html
-var DB *Database
+var (
+	// 参考：http://gorm.io/docs/connecting_to_the_database.html
+	DB     *Database
+	onceDb sync.Once
+)
 
 type Database struct {
 	Self   *gorm.DB
@@ -21,10 +25,12 @@ type Database struct {
 }
 
 func InitDb() {
-	DB = &Database{
-		Self:   GetSelfDB(),
-		Docker: GetDockerDB(),
-	}
+	onceDb.Do(func() {
+		DB = &Database{
+			Self:   GetSelfDB(),
+			Docker: GetDockerDB(),
+		}
+	})
 }
 
 // used for cli

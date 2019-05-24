@@ -7,20 +7,26 @@ import (
 	"github.com/zqhong/albedo/handler"
 	"github.com/zqhong/albedo/pkg/errno"
 	"github.com/zqhong/albedo/util"
+	"sync"
 )
 
-var Engine *gin.Engine
+var (
+	Engine  *gin.Engine
+	onceGin sync.Once
+)
 
 func InitGin() {
-	// Set gin mode.
-	gin.SetMode(viper.GetString("runmode"))
+	onceGin.Do(func() {
+		// Set gin mode.
+		gin.SetMode(viper.GetString("runmode"))
 
-	// Create the Gin engine.
-	Engine = gin.New()
+		// Create the Gin engine.
+		Engine = gin.New()
 
-	loadRoutes(
-	// Middlwares.
-	)
+		loadRoutes(
+		// Middlwares.
+		)
+	})
 }
 
 func loadRoutes(mw ...gin.HandlerFunc) {

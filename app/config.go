@@ -8,31 +8,37 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
 )
 
-var Config *config
+var (
+	Config     *config
+	onceConfig sync.Once
+)
 
 type config struct {
 	Name string
 }
 
 func InitConfig() {
-	cfg := pflag.StringP("config", "c", "", "config file path.")
-	pflag.Parse()
+	onceConfig.Do(func() {
+		cfg := pflag.StringP("config", "c", "", "config file path.")
+		pflag.Parse()
 
-	c := config{
-		Name: *cfg,
-	}
-	Config = &c
+		c := config{
+			Name: *cfg,
+		}
+		Config = &c
 
-	if err := c.initViper(); err != nil {
-		log.Printf("初始化 config 服务出错：%s\n", err.Error())
-		os.Exit(1)
-	}
+		if err := c.initViper(); err != nil {
+			log.Printf("初始化 config 服务出错：%s\n", err.Error())
+			os.Exit(1)
+		}
 
-	viper.WatchConfig()
-	viper.OnConfigChange(func(e fsnotify.Event) {
-		logs.Debug("config file changed:" + e.Name)
+		viper.WatchConfig()
+		viper.OnConfigChange(func(e fsnotify.Event) {
+			logs.Debug("config file changed:" + e.Name)
+		})
 	})
 }
 

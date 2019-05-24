@@ -6,17 +6,21 @@ import (
 	"github.com/astaxie/beego/logs"
 	"github.com/fvbock/endless"
 	"github.com/spf13/viper"
+	"github.com/zqhong/albedo/constant"
 	"github.com/zqhong/albedo/util"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 )
 
 func InitWeb() {
 	InitConfig()
 
-	InitLogger(util.GetRootDir() + "/runtime/log/albedo-web.log")
+	InitPath()
+
+	InitLogger(constant.Path.RootDir + "/runtime/log/albedo-web.log")
 
 	InitEnv()
 
@@ -32,7 +36,9 @@ func InitWeb() {
 func InitCli() {
 	InitConfig()
 
-	InitLogger(util.GetRootDir() + "/runtime/log/albedo-cli.log")
+	InitPath()
+
+	InitLogger(constant.Path.RootDir + "/runtime/log/albedo-cli.log")
 
 	InitEnv()
 
@@ -41,6 +47,20 @@ func InitCli() {
 	InitRedis()
 
 	InitMemCache()
+}
+
+func InitPath() {
+	if filepath.IsAbs(Config.Name) == false {
+		currentDir, _ := os.Getwd()
+		configFilePath := filepath.Join(currentDir, Config.Name)
+		configPath := filepath.Dir(configFilePath)
+
+		constant.SetConfDir(configPath)
+		constant.SetRootDir(filepath.Dir(constant.Path.ConfDir))
+	} else {
+		constant.SetConfDir(filepath.Dir(Config.Name))
+		constant.SetRootDir(filepath.Dir(constant.Path.ConfDir))
+	}
 }
 
 func InitEnv() {
@@ -59,10 +79,10 @@ func RunWeb() {
 	logs.Debug(fmt.Sprintf("Start to listening the incoming requests on http address: %s", viper.GetString("addr")))
 	logs.Info(endless.ListenAndServe(viper.GetString("addr"), Engine).Error())
 
-	CheckServer()
+	checkServer()
 }
 
-func CheckServer() {
+func checkServer() {
 	// Ping the server to make sure the router is working.
 	go func() {
 		if err := pingServer(); err != nil {

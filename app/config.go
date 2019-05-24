@@ -10,7 +10,9 @@ import (
 	"strings"
 )
 
-type Config struct {
+var Config *config
+
+type config struct {
 	Name string
 }
 
@@ -18,9 +20,10 @@ func InitConfig() {
 	cfg := pflag.StringP("config", "c", "", "config file path.")
 	pflag.Parse()
 
-	c := Config{
+	c := config{
 		Name: *cfg,
 	}
+	Config = &c
 
 	if err := c.initViper(); err != nil {
 		log.Printf("初始化 config 服务出错：%s\n", err.Error())
@@ -29,11 +32,11 @@ func InitConfig() {
 
 	viper.WatchConfig()
 	viper.OnConfigChange(func(e fsnotify.Event) {
-		logs.Debug("Config file changed:" + e.Name)
+		logs.Debug("config file changed:" + e.Name)
 	})
 }
 
-func (c *Config) initViper() error {
+func (c *config) initViper() error {
 	if c.Name != "" {
 		viper.SetConfigFile(c.Name)
 	} else {

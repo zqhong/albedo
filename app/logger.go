@@ -12,7 +12,10 @@ func InitLogger(filePath string) {
 		loggerLevel = logs.LevelDebug
 	}
 	loggerConf := fmt.Sprintf(`{"filename":"%s", "level": %d}`, filePath, loggerLevel)
-	logs.SetLogger(logs.AdapterFile, loggerConf)
+	err := logs.SetLogger(logs.AdapterFile, loggerConf)
+	if err != nil {
+
+	}
 
 	logs.Debug("logger config: " + loggerConf)
 	logs.Debug("logger init successful")

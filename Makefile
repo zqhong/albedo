@@ -6,12 +6,13 @@ GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 WEB_BIN_NAME=albedo-web
 CLI_BIN_NAME=albedo-cli
-INSTALLER_BIN_NAME=albedo-installer
+PROJECT_NAME=github.com/zqhong/albedo
 
 all: build
 
 install: build
 	cp -nv conf/config.yaml.example conf/config.yaml
+	find . -name "*.go" | xargs -I {} sed -i "" "s#github.com/zqhong/albedo/#$(PROJECT_NAME)/#g" {}
 
 build: build-web build-cli
 
@@ -20,11 +21,6 @@ build-web: gotool
 
 build-cli: gotool
 	$(GOBUILD) -ldflags="-s -w" -o ./build/$(CLI_BIN_NAME) -v cli.go
-
-build-installer: gotool
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(INSTALLER_BIN_NAME)-linux -v installer.go
-	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(INSTALLER_BIN_NAME)-win.exe -v installer.go
-	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -ldflags="-s -w" -o ./build/$(INSTALLER_BIN_NAME)-darwin -v installer.go
 
 run-web: build-web
 	./build/$(WEB_BIN_NAME)

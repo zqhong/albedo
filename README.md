@@ -21,26 +21,20 @@
 
 ## 安装
 ```bash
-$ cd $GOPATH/src/github.com/your_name
+# 1、克隆当前项目到本地
+$ git clone git@github.com:zqhong/albedo.git
 
-# 打开 [albedo-installer](https://gitee.com/zqhong/albedo-installer)，下载对应操作系统的安装器
+# 2、打开 Makefile，修改 PROJECT_NAME 为你的项目名称，例如：github.com/zqhong/demo233
 
-# 以 macOS 系统为例，这里的项目名为 demo
-$ chmod +x installer-darwin
-$ ./installer-darwin -project-name=demo
+# 3、修改配置文件 conf/config.yaml
 
-$ cd demo
-
-# 请确保 $GOPATH/bin 目录在环境变量 PATH 下
+# 4、执行最后到安装处理
 $ make install
 
-# 修改配置文件 conf/config.yaml
-
-# 测试
+# 5、测试
+# 如果启动失败，检查 runtime/albedo.log 日志文件
 $ ./build/web
 $ ./build/cli
-
-# 如果启动失败，检查 runtime/albedo.log 日志文件
 ```
 
 ## 新建命令

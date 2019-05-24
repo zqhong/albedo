@@ -3,7 +3,6 @@ package app
 import (
 	"github.com/astaxie/beego/logs"
 	"github.com/fsnotify/fsnotify"
-	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"log"
 	"os"
@@ -20,13 +19,10 @@ type config struct {
 	Name string
 }
 
-func InitConfig() {
+func InitConfig(configPath string) {
 	onceConfig.Do(func() {
-		cfg := pflag.StringP("config", "c", "", "config file path.")
-		pflag.Parse()
-
 		c := config{
-			Name: *cfg,
+			Name: configPath,
 		}
 		Config = &c
 

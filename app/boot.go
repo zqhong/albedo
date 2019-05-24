@@ -16,8 +16,6 @@ import (
 )
 
 func InitWeb() {
-	InitConfig()
-
 	InitPath()
 
 	InitLogger(constant.Path.RootDir + "/runtime/log/albedo-web.log")
@@ -34,8 +32,6 @@ func InitWeb() {
 }
 
 func InitCli() {
-	InitConfig()
-
 	InitPath()
 
 	InitLogger(constant.Path.RootDir + "/runtime/log/albedo-cli.log")

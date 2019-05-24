@@ -16,7 +16,7 @@
 * 任务调度：[robfig/cron](github.com/robfig/cron)
 
 ## 辅助库/组件
-* 包依赖管理：[govendor](https://github.com/kardianos/govendor)
+* 包依赖管理：[go mod](https://blog.golang.org/using-go-modules)
 * Makefile：内置快速使用的命令
 
 ## 安装
@@ -58,9 +58,6 @@ $ make -run-cli
 $ make test
 
 $ make clean
-
-# 安装依赖
-$ make deps
 ```
 
 ## admin.sh 内置命令
@@ -132,5 +129,4 @@ c.Start()
 ## 参考
 * [lexkong/apiserver](https://github.com/lexkong/apiserver)
 * [chenhg5/morningo](https://github.com/chenhg5/morningo)
-* [cg33/morningo-installer](https://gitee.com/cg33/morningo-installer)
 * [inhere/go-gin-skeleton](https://github.com/inhere/go-gin-skeleton)

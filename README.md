@@ -11,7 +11,6 @@
 * 配置管理：[viper](https://github.com/spf13/viper)
 * 日志记录：[beego logger](https://beego.me/docs/module/logs.md)
 * 命令行：[cobra](https://github.com/spf13/cobra)
-* 平滑重启：[endless](https://github.com/fvbock/endless)
 * Redis：[go-redis/redis](github.com/go-redis/redis)
 * 任务调度：[robfig/cron](github.com/robfig/cron)
 
@@ -65,9 +64,6 @@ $ make clean
 $ bash admin.sh start
 
 $ bash admin.sh stop
-
-# 利用 endless 实现平滑重启
-$ bash admin.sh restart
 
 $ bash admin.sh status
 ```

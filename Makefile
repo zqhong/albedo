@@ -31,9 +31,9 @@ run-cli: build-cli
 release: release-cli release-web
 
 release-cli: gotool
-	CGO_ENABLED=1 GOOS=linux GOARCH=amd64 $(GOBUILD) -o ./build/$(CLI_BIN_NAME)-linux -v cli.go
-	CGO_ENABLED=1 GOOS=windows GOARCH=amd64 $(GOBUILD) -o ./build/$(CLI_BIN_NAME)-win.exe -v cli.go
-	CGO_ENABLED=1 GOOS=darwin GOARCH=amd64 $(GOBUILD) -o ./build/$(CLI_BIN_NAME)-darwin -v cli.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o ./build/$(CLI_BIN_NAME)-linux -v cli.go
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 $(GOBUILD) -o ./build/$(CLI_BIN_NAME)-win.exe -v cli.go
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 $(GOBUILD) -o ./build/$(CLI_BIN_NAME)-darwin -v cli.go
 
 release-web: gotool
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o ./build/$(WEB_BIN_NAME)-linux -v web.go
@@ -45,6 +45,7 @@ test:
 
 clean:
 	go clean
+	go mod tidy -v
 	find ./build -type f | grep -v ".gitkeep" | xargs rm -v
 	find . -type f -name .DS_Store -delete
 

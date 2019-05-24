@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/astaxie/beego/logs"
-	"github.com/fvbock/endless"
 	"github.com/spf13/viper"
 	"github.com/zqhong/albedo/constant"
 	"github.com/zqhong/albedo/util/datetime"
@@ -73,7 +72,7 @@ func InitEnv() {
 
 func RunWeb() {
 	logs.Debug(fmt.Sprintf("Start to listening the incoming requests on http address: %s", viper.GetString("addr")))
-	logs.Info(endless.ListenAndServe(viper.GetString("addr"), Engine).Error())
+	logs.Info(http.ListenAndServe(viper.GetString("addr"), Engine).Error())
 
 	checkServer()
 }

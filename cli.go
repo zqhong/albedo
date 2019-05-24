@@ -1,6 +1,5 @@
 package main
 
-import "C"
 import (
 	"fmt"
 	"github.com/spf13/pflag"

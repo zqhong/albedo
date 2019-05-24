@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/zqhong/albedo/util"
+	"log"
+	"os"
 )
 
 func InitLogger(filePath string) {
@@ -14,9 +16,10 @@ func InitLogger(filePath string) {
 	loggerConf := fmt.Sprintf(`{"filename":"%s", "level": %d}`, filePath, loggerLevel)
 	err := logs.SetLogger(logs.AdapterFile, loggerConf)
 	if err != nil {
-
+		log.Printf("初始化 logger 服务出错：%s\n", err.Error())
+		os.Exit(1)
 	}
 
-	logs.Debug("logger config: " + loggerConf)
-	logs.Debug("logger init successful")
+	logs.Debug("logger 配置: " + loggerConf)
+	logs.Debug("logger 初始化成功")
 }
